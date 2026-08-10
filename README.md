@@ -1,785 +1,542 @@
-# InsureMithra - Insurance Workflow Automation System
+# InsureMithra — Insurance Workflow Automation System
 
-## Story 04: Role-Based Access Control
+[![CI/CD](https://github.com/pestechnology/PESU_RR_CSE_D_P04_Insurance_workflow_automation_software_InsureMithra/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/pestechnology/PESU_RR_CSE_D_P04_Insurance_workflow_automation_software_InsureMithra/actions/workflows/ci-cd.yml)
+![Node](https://img.shields.io/badge/node-20.x-339933?logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/react-19-61DAFB?logo=react&logoColor=black)
+![MongoDB](https://img.shields.io/badge/mongodb-7.x-47A248?logo=mongodb&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-This folder demonstrates **Role-Based Access Control (RBAC)** implementation with admin features and user management capabilities. This builds on Story 03 (Profile Management) by adding administrative controls and role-specific features.
+A full-stack MERN application that automates the end-to-end insurance lifecycle — policy discovery, comparison, purchase, renewal, and claims — with role-based administration, observability, and an automated CI/CD quality pipeline.
 
-## 🆕 New Features in Story 04
-
-### Admin Dashboard
-- **User Management Interface**: View, edit, and manage all users
-- **System Statistics**: Real-time dashboard with user metrics
-- **Role Management**: Change user roles (user/admin)
-- **Account Control**: Activate/deactivate user accounts
-- **Activity Monitoring**: View user activity logs
-
-### Role-Based Features
-- **Admin-Only Endpoints**: Protected routes for administrative functions
-- **Permission Checks**: Middleware to verify user roles
-- **Self-Protection**: Admins cannot modify their own role/status
-- **Audit Logging**: Track all administrative actions
-
-## Story D — Role-Based Access Control (RBAC)
-
-Implemented artifacts for Story D (RBAC):
-
-- New middleware: `middleware/roleAuth.js` — provides `authorizeRoles(...roles)` and `requireAdmin` which verify JWT + role and write audit entries for granted/denied access attempts via `config/logger.js`.
-- Admin endpoints remain under `routes/profile.routes.js` (paths: `/api/profile/admin/*`) and are enforced with role checks.
-- Tests: `tests/roleAuth.test.js` validates admin access, regular-user denial (403), and unauthenticated requests (401).
-- Logger: `config/logger.js` now contains `auditLog.accessAttempt(...)` to record access attempts to `logs/audit.log`.
-
-Acceptance Criteria covered:
-
-1. Middleware verifies JWT token and decodes user role (uses existing `middleware/auth.js`/`authenticate`).
-2. Admin-only routes (`/api/profile/admin/*`) are accessible only to `role = "admin"`.
-3. Non-admin users receive HTTP 403 for restricted routes.
-4. All access attempts are logged in `logs/audit.log` via `auditLog.accessAttempt`.
-5. Integration tests exist in `tests/roleAuth.test.js` and `tests/rbac.test.js`.
-6. Code follows project style and uses central `config/logger.js` for audit logging.
-
-### Frontend Enhancements
-- **Admin Panel Route** (`/admin`): Full admin dashboard
-- **Role Indicator**: Visual badge showing admin status
-- **Conditional UI**: Admin menu options in user dashboard
-- **Responsive Tables**: User management with pagination
-
-A comprehensive MERN stack application for user authentication and profile management in the InsureMithra Insurance Workflow Automation System.
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (v16 or higher)
-- MongoDB (v4.4 or higher)
-- npm or yarn
-
-### Installation & Setup
-
-1. **Clone and setup Backend**
-```bash
-cd InsureMithra
-npm install
-```
-
-2. **Setup Frontend**
-```bash
-cd frontend
-npm install
-```
-
-3. **Environment Configuration**
-```bash
-# Backend environment
-cp env.example .env
-# Edit .env with your configuration
-```
-
-4. **Start MongoDB**
-```bash
-# Make sure MongoDB is running on your system
-mongod
-```
-
-## 🏃‍♂️ Running the Application
-
-### Option 1: Run Backend and Frontend Separately
-
-**Terminal 1 - Backend Server:**
-```bash
-# Start the backend server
-npm run dev
-# OR
-npm start
-```
-
-**Terminal 2 - Frontend Development Server:**
-```bash
-cd frontend
-npm start
-```
-
-### Option 2: Run with Development Scripts
-
-**Start Backend:**
-```bash
-# Development mode with nodemon
-npm run dev
-
-# Production mode
-npm start
-
-# Simple server (alternative)
-node simple-server.js
-```
-
-**Start Frontend:**
-```bash
-cd frontend
-npm start
-```
-
-### Option 3: Build and Serve Frontend
-
-**Build Frontend for Production:**
-```bash
-cd frontend
-npm run build
-```
-
-**Serve Built Frontend:**
-```bash
-cd frontend
-# Install serve globally if not already installed
-npm install -g serve
-
-# Serve the built files
-serve -s build
-```
-
-## 🌐 Application URLs
-
-- **Backend API**: http://localhost:5001
-- **Frontend Development**: http://localhost:3000
-- **Frontend Production**: http://localhost:3000 (after build)
-
-## 🧪 Testing
-
-**Backend Tests:**
-```bash
-npm test
-```
-
-**Frontend Tests:**
-```bash
-cd frontend
-npm test
-```
-
-**Frontend Build Test:**
-```bash
-cd frontend
-npm run build
-```
-
-## 📁 Project Structure
-
-```
-InsureMithra/
-├── config/
-│   └── logger.js              # Winston logging configuration
-├── controllers/
-│   ├── auth.controller.js     # Authentication logic
-│   └── profile.controller.js  # Profile management logic
-├── middleware/
-│   └── auth.js               # JWT & role-based middleware
-├── models/
-│   └── user.model.js         # User Mongoose schema
-├── routes/
-│   ├── auth.routes.js        # Authentication routes
-│   └── profile.routes.js     # Profile management routes
-├── tests/
-│   └── auth.test.js          # Jest test suite
-├── logs/                     # Log files (created automatically)
-├── frontend/                 # React frontend application
-│   ├── public/
-│   ├── src/
-│   │   ├── components/       # React components
-│   │   ├── pages/           # Page components
-│   │   ├── contexts/        # React contexts (Auth)
-│   │   ├── services/        # API services
-│   │   └── config/          # Frontend configuration
-│   ├── package.json
-│   └── README.md
-├── server.js                 # Express server setup
-├── simple-server.js         # Alternative server setup
-├── start-dev.sh            # Development startup script
-├── start-server.js         # Production startup script
-├── package.json
-├── env.example             # Environment variables template
-├── API_DOCUMENTATION.md    # Complete API documentation
-├── FRONTEND_INTEGRATION.md # Frontend integration guide
-└── README.md
-```
-
-## 🔧 Environment Variables
-
-Create a `.env` file with the following variables:
-
-```env
-# Database
-MONGODB_URI=mongodb://localhost:27017/insuremithra
-DB_NAME=insuremithra
-
-# JWT Configuration
-JWT_SECRET=your_super_secret_jwt_key_here
-JWT_EXPIRE=7d
-
-# Server
-PORT=5001
-NODE_ENV=development
-
-# Email (for password reset)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
-EMAIL_FROM=noreply@insuremithra.com
-
-# Security
-BCRYPT_ROUNDS=12
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_ATTEMPTS=5
-```
-
-## 🛡️ Security Features
-
-### Authentication
-- **JWT-based authentication** with configurable expiration
-- **Password hashing** using bcrypt with salt rounds
-- **Account lockout** after 5 failed login attempts (15-minute lockout)
-- **Rate limiting** on authentication endpoints
-
-### Password Security
-- Minimum 8 characters required
-- Must contain: uppercase, lowercase, number, special character
-- Secure password reset with time-limited tokens (15 minutes)
-- Email verification with 24-hour token validity
-
-### Audit Logging
-- All authentication events logged
-- Profile changes tracked
-- Failed login attempts recorded
-- Security events monitored with IP and user agent tracking
-
-## 📚 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
-- `POST /api/auth/forgot-password` - Request password reset
-- `POST /api/auth/reset-password` - Reset password with token
-- `GET /api/auth/verify-email/:token` - Verify email address
-- `GET /api/auth/me` - Get current user info
-
-
-### Authentication
-- **JWT-based authentication** with configurable expiration
-- **Password hashing** using bcrypt with salt rounds
-- **Account lockout** after 5 failed login attempts (15-minute lockout)
-- **Rate limiting** on authentication endpoints
-
-### Password Security
-- Minimum 8 characters required
-- Must contain: uppercase, lowercase, number, special character
-- Secure password reset with time-limited tokens (15 minutes)
-- Email verification with 24-hour token validity
-
-### Audit Logging
-- All authentication events logged
-- Profile changes tracked
-- Failed login attempts recorded
-- Security events monitored with IP and user agent tracking
-
-## 📚 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
-- `POST /api/auth/forgot-password` - Request password reset
-- `POST /api/auth/reset-password` - Reset password with token
-- `GET /api/auth/verify-email/:token` - Verify email address
-- `GET /api/auth/me` - Get current user info
-
-### Profile Management
-- `GET /api/profile` - Get user profile
-- `PUT /api/profile` - Update user profile
-- `POST /api/profile/change-password` - Change password
-- `POST /api/profile/deactivate` - Deactivate account
-- `GET /api/profile/activity-log` - Get activity log (admin only)
-
-### Admin Endpoints (New in Story 04) 🔐
-- `GET /api/profile/admin/users` - Get all users with pagination (admin only)
-- `GET /api/profile/admin/users/:userId` - Get specific user details (admin only)
-- `PUT /api/profile/admin/users/:userId/role` - Update user role (admin only)
-- `PUT /api/profile/admin/users/:userId/status` - Toggle user active status (admin only)
-- `GET /api/profile/admin/stats` - Get system statistics (admin only)
-
-### System
-- `GET /api/health` - Health check
-
-## 🔐 Role-Based Access Control
-
-### User Roles
-- **User**: Standard user with access to personal profile and insurance features
-- **Admin**: Full access including user management and system statistics
-
-### Permission Model
-```javascript
-// Middleware checks
-authenticate()        // Verifies JWT token
-requireAdmin         // Requires admin role
-requireUser          // Requires user or admin role
-```
-
-### Protected Actions
-- View all users → Admin only
-- Change user roles → Admin only (cannot change own role)
-- Deactivate users → Admin only (cannot deactivate self)
-- View system stats → Admin only
-- Activity logs → Admin can view any user's logs
-### System
-- `GET /api/health` - Health check
-
-## 🧪 Testing
-
-The project includes comprehensive test coverage:
-
-```bash
-# Run all tests
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run specific test file
-npm test tests/auth.test.js
-```
-
-### Test Coverage
-- User registration and validation
-- Login with valid/invalid credentials
-- Account lockout after failed attempts
-- Password reset flow
-- Profile management
-- Authentication middleware
-- Role-based access control
-
-## 📖 API Documentation
-
-Complete API documentation is available in `API_DOCUMENTATION.md` including:
-- Detailed endpoint descriptions
-- Request/response examples
-- cURL commands for testing
-- Error codes and handling
-- Security considerations
-
-## 🔄 Development Workflow
-
-### For Developers (Dishan D)
-1. **Backend Development**: Implement core authentication logic
-2. **API Design**: Create RESTful endpoints with proper validation
-3. **Security**: Implement JWT, password hashing, rate limiting
-4. **Database**: Design user schema with proper indexing
-
-### For Test Engineers (Dhruv Jain)
-1. **Unit Tests**: Write comprehensive test cases for all endpoints
-2. **Integration Tests**: Test complete authentication flows
-3. **Security Tests**: Verify account lockout, rate limiting
-4. **Performance Tests**: Test with multiple concurrent users
-
-### For QA Lead (Gujjar R Suman Rao)
-1. **Test Planning**: Create test scenarios for all user stories
-2. **Security Testing**: Verify authentication and authorization
-3. **User Acceptance**: Validate against SRS requirements
-4. **Regression Testing**: Ensure no breaking changes
-
-### For Product Owner (Harshaa Vardhana KV)
-1. **Requirements Review**: Validate against SRS specifications
-2. **User Stories**: Approve authentication and profile workflows
-3. **Acceptance Criteria**: Verify all story requirements met
-4. **Stakeholder Communication**: Coordinate with team members
-
-## 🚀 Next Steps - Epic 2-4 Integration
-
-This authentication module provides the foundation for:
-
-### Epic 2: Policy Management
-- **User Authentication**: Required for policy search and purchase
-- **Role-Based Access**: Different permissions for users vs admins
-- **Profile Integration**: User details for policy applications
-
-### Epic 3: Claims Processing
-- **Authenticated Claims**: Only verified users can file claims
-- **User Context**: Claims linked to authenticated user profiles
-- **Audit Trail**: Track claim submissions and updates
-
-### Epic 4: Monitoring & Analytics
-- **Admin Dashboard**: Role-based access to monitoring features
-- **User Analytics**: Track user behavior and system usage
-- **Security Monitoring**: Monitor authentication events and threats
-
-## 🔧 Configuration
-
-### Database Setup
-```bash
-# Start MongoDB
-mongod
-
-# Create database (automatically created on first connection)
-# Database name: insuremithra
-```
-
-### Logging
-- **Error logs**: `logs/error.log`
-- **Combined logs**: `logs/combined.log`
-- **Audit logs**: `logs/audit.log`
-
-### Production Considerations
-- Use environment variables for all secrets
-- Set up proper MongoDB authentication
-- Configure email service for password reset
-- Set up log rotation and monitoring
-- Use HTTPS in production
-- Implement proper CORS configuration
-
-## 🚀 Complete Command Reference
-
-### Initial Setup (First Time Only)
-
-```bash
-# 1. Install backend dependencies
-npm install
-
-# 2. Install frontend dependencies
-cd frontend
-npm install
-cd ..
-
-# 3. Setup environment variables
-cp env.example .env
-# Edit .env with your MongoDB URI and JWT secret
-
-# 4. Start MongoDB (in a separate terminal)
-mongod
-```
-
-### Development Commands
-
-**Backend Development:**
-```bash
-```bash
-# Start MongoDB
-mongod
-
-# Create database (automatically created on first connection)
-# Database name: insuremithra
-```
-
-### Logging
-- **Error logs**: `logs/error.log`
-- **Combined logs**: `logs/combined.log`
-- **Audit logs**: `logs/audit.log`
-
-### Production Considerations
-- Use environment variables for all secrets
-- Set up proper MongoDB authentication
-- Configure email service for password reset
-- Set up log rotation and monitoring
-- Use HTTPS in production
-- Implement proper CORS configuration
-
-## 🚀 Complete Command Reference
-
-### Initial Setup (First Time Only)
-
-```bash
-# 1. Install backend dependencies
-npm install
-
-# 2. Install frontend dependencies
-cd frontend
-npm install
-cd ..
-
-# 3. Setup environment variables
-cp env.example .env
-# Edit .env with your MongoDB URI and JWT secret
-
-# 4. Start MongoDB (in a separate terminal)
-mongod
-```
-
-### Development Commands
-
-**Backend Development:**
-```bash
-# Start backend server with nodemon (auto-restart)
-npm run dev
-
-# Start backend server (production mode)
-npm start
-
-# Alternative: Simple server
-node simple-server.js
-
-# Run backend tests
-npm test
-```
-
-**Frontend Development:**
-```bash
-# Start React development server
-cd frontend
-npm start
-
-# Build frontend for production
-npm run build
-
-# Test frontend build
-npm run build
-
-# Run frontend tests
-npm test
-```
-
-npm test
-```
-
-**Frontend Development:**
-```bash
-# Start React development server
-cd frontend
-npm start
-
-# Build frontend for production
-npm run build
-
-# Test frontend build
-npm run build
-
-# Run frontend tests
-npm test
-```
-
-### Production Deployment
-
-**Build and Serve Frontend:**
-```bash
-# Build the frontend
-cd frontend
-npm run build
-
-# Serve the built files (install serve globally first)
-npm install -g serve
-serve -s build -l 3000
-```
-
-**Backend Production:**
-```bash
-# Start production server
-npm start
-```
-
-### Quick Start Scripts
-
-**Option 1: Manual Start (Recommended for Development)**
-```bash
-# Terminal 1: Start MongoDB
-mongod
-
-# Terminal 2: Start Backend
-npm run dev
-
-# Terminal 3: Start Frontend
-cd frontend
-npm start
-```
-
-**Option 2: Using Development Script**
-```bash
-# Make the script executable (Linux/Mac)
-chmod +x start-dev.sh
-
-# Run the development script
-./start-dev.sh
-```
-
-### Troubleshooting Commands
-
-**Check if services are running:**
-```bash
-# Check if MongoDB is running
-mongosh --eval "db.runCommand('ping')"
-
-# Check if backend is running
-curl http://localhost:5001/api/health
-
-# Check if frontend is running
-curl http://localhost:3000
-```
-
-**Reset and Clean:**
-```bash
-# Clean node_modules and reinstall
-rm -rf node_modules package-lock.json
-npm install
-
-# Clean frontend
-cd frontend
-rm -rf node_modules package-lock.json
-npm install
-cd ..
-
-# Clear MongoDB database (if needed)
-mongosh
-use insuremithra
-db.dropDatabase()
-```
-
-**View Logs:**
-```bash
-# View backend logs
-tail -f logs/combined.log
-
-# View error logs
-tail -f logs/error.log
-
-# View audit logs
-tail -f logs/audit.log
-```
-
-### Environment Setup
-
-**Required Environment Variables (.env file):**
-```env
-# Database
-MONGODB_URI=mongodb://localhost:27017/insuremithra
-DB_NAME=insuremithra
-
-# JWT Configuration
-JWT_SECRET=your_super_secret_jwt_key_here
-JWT_EXPIRE=7d
-
-# Server
-PORT=5001
-NODE_ENV=development
-
-# Email (for password reset)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
-EMAIL_FROM=noreply@insuremithra.com
-
-# Security
-BCRYPT_ROUNDS=12
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_ATTEMPTS=5
-
-# Performance & Caching (Epic 4 Story 1)
-REDIS_URL=redis://localhost:6379
-CACHE_DEFAULT_TTL=300
-CACHE_POLICY_SEARCH_TTL=60
-CACHE_POLICY_DETAIL_TTL=300
-ENABLE_COMPRESSION=true
-```
-
-## 🚀 Performance & Caching (Epic 4 Story 1)
-
-InsureMithra includes comprehensive performance optimizations to ensure main user flows respond within ≤ 2 seconds.
-
-### Features
-
-- **Server-side caching** with Redis (automatic LRU fallback)
-- **Response time profiling** and metrics
-- **Gzip compression** for all responses
-- **Static asset caching** with Cache-Control headers
-- **Frontend code-splitting** with React.lazy
-- **Image lazy loading** utilities
-
-### Quick Setup
-
-**1. Install Redis (Optional but Recommended)**
-
-```bash
-# macOS
-brew install redis
-brew services start redis
-
-# Ubuntu/Debian
-sudo apt-get install redis-server
-sudo systemctl start redis
-
-# Docker
-docker run -d -p 6379:6379 --name redis redis:alpine
-```
-
-**2. Configure Environment**
-
-```bash
-# Add to .env
-REDIS_URL=redis://localhost:6379
-CACHE_DEFAULT_TTL=300
-CACHE_POLICY_SEARCH_TTL=60
-ENABLE_COMPRESSION=true
-```
-
-**3. Run Performance Tests**
-
-```bash
-# Cache and latency tests
-npm test tests/perf.cache.test.js
-npm test tests/perf.latency.test.js
-
-# Load testing
-npm run bench:search
-npm run bench:details
-```
-
-### Performance Monitoring
-
-**Check performance metrics:**
-```bash
-curl http://localhost:5001/api/health/perf
-```
-
-**View performance logs:**
-```bash
-tail -f logs/perf.log
-```
-
-### Benchmarking
-
-```bash
-# Policy search benchmark (30s, 50 connections)
-npm run bench:search
-
-# Custom duration and connections
-BENCH_DURATION=60 BENCH_CONNECTIONS=100 npm run bench:search
-
-# Policy details benchmark
-npm run bench:details
-```
-
-### Documentation
-
-For detailed performance documentation, see:
-- **[PERFORMANCE.md](PERFORMANCE.md)** - Complete performance guide
-- **[tools/lighthouse/README.md](tools/lighthouse/README.md)** - Lighthouse testing guide
-
-### Performance Targets
-
-| Metric | Target | Status |
-|--------|--------|--------|
-| Policy Search Response | ≤ 2s | ✅ |
-| Policy Details Response | ≤ 2s | ✅ |
-| Cache Hit Rate | > 70% | ✅ |
-| Lighthouse Score | ≥ 90 | ✅ |
-
-## 📞 Support
-
-For technical support or questions:
-- **Developer**: Dishan D
-- **Test Engineer**: Dhruv Jain
-- **QA Lead**: Gujjar R Suman Rao
-- **Product Owner**: Harshaa Vardhana KV
-
-## 📄 License
-
-This project is part of the Software Engineering course at PES University.
+Built as the semester project for **UE23CS341A — Software Engineering**, PES University (RR Campus), by team **InsureMithra**.
 
 ---
 
-**Note**: This is Epic 1 implementation. Future epics will build upon this authentication foundation to create a complete insurance workflow automation system.
+## Table of Contents
 
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [API Reference](#api-reference)
+- [Testing](#testing)
+- [CI/CD Pipeline](#cicd-pipeline)
+- [Operations](#operations)
+- [Project Structure](#project-structure)
+- [Documentation](#documentation)
+- [Development Workflow](#development-workflow)
+- [Team](#team)
+- [License](#license)
+
+---
+
+## Overview
+
+Buying and maintaining an insurance policy usually means paperwork, phone calls, and waiting. InsureMithra replaces that with a self-service web application where a customer can:
+
+1. **Search and filter** two-wheeler, four-wheeler, health, life, and travel policies
+2. **Compare** up to several policies side by side on premium, coverage, benefits, and exclusions
+3. **Purchase** a policy through a sandboxed payment flow and receive a generated PDF receipt
+4. **Renew** an expiring policy, with eligibility checks and an automatic confirmation email
+5. **File a claim** with supporting documents and track its status through review to settlement
+
+Administrators get a separate surface for user management, claim adjudication, uptime history, and backup control. The whole system is backed by a six-stage CI pipeline that gates every push on tests, a 70% coverage floor, lint cleanliness, and security scanning.
+
+---
+
+## Features
+
+### Authentication & Identity
+- JWT-based registration and login with `bcryptjs` password hashing (12 rounds)
+- Password reset over email with expiring, single-use tokens
+- Token format validation and a server-side token blacklist for logout/revocation
+- Failed-login tracking and account activation state
+- Rate limiting on all `/api/auth` routes (strict in production, lenient in development)
+
+### Policy Discovery
+- Full-text policy search with filtering by type, insurer, and premium range
+- Side-by-side policy comparison endpoint
+- Detailed policy view with benefits, exclusions, tenure, and coverage breakdown
+- Responses cached with tuned per-route TTLs (60s search, 300s detail)
+
+### Purchase & Renewal
+- Sandboxed payment flow with generated transaction IDs and `initiated → processing → success/failed` state machine
+- Automatic policy-document PDF generation via `pdfkit`, downloadable from the dashboard
+- Renewal eligibility checks against expiry date and renewal status
+- Post-renewal confirmation email with the new expiry date, plus an audit entry in `logs/renewals.log`
+
+### Claims
+- Claim submission with multipart document upload (PDF/JPEG/PNG, ≤ 5 MB, up to 5 files)
+- Human-readable claim IDs in `CLM-YYYYMMDD-XXXX` format
+- Status lifecycle: `Submitted → Under Review → Approved / Rejected → Closed`
+- Full status-change history with the acting admin recorded on every transition
+- Email notification to the claimant on each status change
+
+### Role-Based Access Control
+- `authorizeRoles(...roles)` and `requireAdmin` middleware layered on top of JWT authentication
+- Admin-only surfaces for user management, claim review, downtime history, and backups
+- Self-protection: admins cannot change their own role or deactivate their own account
+- Every granted and denied access attempt is written to `logs/audit.log`
+
+### Performance & Caching
+- Redis-backed cache service with an automatic in-memory LRU fallback when Redis is unavailable
+- Gzip compression for responses over 1 KB
+- Per-request timing middleware exposing p50/p95/p99 latency and a slow-request log
+- `Cache-Control` strategy for static assets: one year for content-hashed files, one hour otherwise
+- `autocannon` load-test harness for the search and details endpoints
+
+### Reliability & Operations
+- Health probe every 10 minutes; downtime alert fires when a service is unreachable for over 5 minutes
+- Downtime events persisted to MongoDB and `logs/downtime.log`, with email/webhook alerting
+- Nightly MongoDB + uploads backup at 00:00 with a 3-day retention window
+- Restore workflow with a verification pass over the most recent backups
+- Admin API and UI to browse downtime history, list backups, and trigger a backup or restore on demand
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Frontend | React 19, TypeScript, Material UI 7, React Router 6, Axios |
+| Backend | Node.js 20, Express 4 |
+| Database | MongoDB 6/7 with Mongoose 7 |
+| Cache | Redis (`ioredis`) with `lru-cache` fallback |
+| Auth | JSON Web Tokens, `bcryptjs` |
+| Files & Docs | Multer (uploads), PDFKit (policy documents) |
+| Email | Nodemailer over SMTP |
+| Scheduling | `node-cron` |
+| Logging | Winston (application, audit, downtime, renewal, backup channels) |
+| Testing | Jest, Supertest, `mongodb-memory-server`, React Testing Library |
+| Quality | ESLint 9, Pylint, npm audit, TruffleHog, Bandit |
+| Load testing | autocannon, Lighthouse |
+| CI/CD | GitHub Actions |
+
+---
+
+## Architecture
+
+```
+┌──────────────────────────────┐
+│  React 19 SPA (TypeScript)   │
+│  MUI · React Router · Axios  │
+└──────────────┬───────────────┘
+               │ REST / JSON  (Bearer JWT)
+┌──────────────▼───────────────────────────────────────┐
+│                  Express API                          │
+│                                                       │
+│  helmet · cors · compression · rate-limit · morgan    │
+│  ─────────────────────────────────────────────────    │
+│  authenticate → authorizeRoles → cache → controller   │
+│  ─────────────────────────────────────────────────    │
+│  auth · profile · policies · purchases · renewals ·   │
+│  claims · admin                                       │
+└───┬────────────┬─────────────┬────────────┬───────────┘
+    │            │             │            │
+┌───▼────┐  ┌────▼────┐  ┌─────▼─────┐  ┌───▼────────┐
+│MongoDB │  │  Redis  │  │ Local FS  │  │  SMTP      │
+│(Mongoose)│ │ (LRU    │  │ uploads/  │  │ (Nodemailer│
+│        │  │ fallback)│ │ receipts/ │  │  alerts &  │
+│        │  │         │  │ backups/  │  │  receipts) │
+└────────┘  └─────────┘  └───────────┘  └────────────┘
+
+        node-cron schedulers
+        ├── downtimeMonitor  — health probe every 10 min
+        └── backupScheduler  — nightly dump at 00:00, 3-day retention
+```
+
+**Request pipeline.** Every protected request passes through `authenticate` (JWT verification and blacklist check), then optional `authorizeRoles` for admin surfaces, then a route-specific cache middleware that serves a hit directly, and finally the controller. `timingMiddleware` wraps the whole chain and records latency for `/api/health/perf`.
+
+**Cache strategy.** `services/cache.service.js` prefers Redis when `REDIS_URL` is set and reachable, and transparently degrades to an in-process LRU cache otherwise — so the application runs identically with or without a Redis instance.
+
+### Data Model
+
+| Collection | Purpose | Key fields |
+| --- | --- | --- |
+| `users` | Accounts and roles | `email`, `password` (hashed), `role`, `isActive`, `isEmailVerified`, `failedLoginAttempts` |
+| `policies` | Policy catalogue | `type` (2W/4W/Health/Life/Travel), `insurer`, `premium`, `coverage`, `benefits`, `exclusions` |
+| `purchases` | Issued policies | `transactionId`, `status`, `policyNumber`, `pdfPath`, `expiryDate`, `renewalStatus` |
+| `renewals` | Renewal transactions | `transactionId`, `status`, `oldExpiryDate`, `newExpiryDate`, `gatewayReceipt` |
+| `claims` | Claims and documents | `claimId`, `status`, `documents[]`, `statusHistory[]`, `reviewedBy` |
+| `downtimes` | Outage records | `service`, `startAt`, `endAt`, `durationMs`, `alertSent` |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+| Requirement | Version |
+| --- | --- |
+| Node.js | 20.x (18+ works) |
+| MongoDB | 6.0+ running locally or a connection URI |
+| npm | 9+ |
+| Redis | *Optional* — the cache falls back to in-memory LRU |
+
+### Installation
+
+```bash
+git clone https://github.com/pestechnology/PESU_RR_CSE_D_P04_Insurance_workflow_automation_software_InsureMithra.git
+cd PESU_RR_CSE_D_P04_Insurance_workflow_automation_software_InsureMithra
+
+# Backend dependencies
+npm install
+
+# Frontend dependencies
+cd frontend && npm install && cd ..
+```
+
+### Configuration
+
+```bash
+cp .env.example .env
+```
+
+Fill in `.env` — nothing in it is optional except the Redis and benchmarking blocks:
+
+| Variable | Description | Default |
+| --- | --- | --- |
+| `PORT` | API port (the frontend dev server proxies here) | `5001` |
+| `MONGODB_URI` | MongoDB connection string | `mongodb://localhost:27017/insuremithra` |
+| `JWT_SECRET` | Signing secret for access tokens | *(required)* |
+| `JWT_EXPIRES_IN` | Token lifetime | `24h` |
+| `SMTP_HOST` / `SMTP_PORT` | Mail server for resets, receipts, and alerts | `smtp.gmail.com` / `587` |
+| `SMTP_USER` / `SMTP_PASS` | SMTP credentials (use an app-specific password) | *(required)* |
+| `REDIS_URL` | Redis endpoint; leave empty to use the LRU fallback | — |
+| `CACHE_*_TTL` | Per-route cache lifetimes in seconds | 300 / 60 / 300 / 30 / 30 |
+| `ENABLE_COMPRESSION` | Gzip toggle | `true` |
+| `UPLOAD_DIR` / `MAX_FILE_SIZE` | Claim document storage | `uploads` / `5242880` |
+| `MONITOR_INTERVAL_MINUTES` | Health-probe frequency | `10` |
+| `DOWN_ALERT_THRESHOLD_MS` | Downtime before an alert fires | `300000` |
+| `FRONTEND_URL` | Origin used in emailed links | `http://localhost:3000` |
+| `BCRYPT_ROUNDS` | Password hashing cost | `12` |
+
+Verify the environment before starting:
+
+```bash
+npm run env-check
+```
+
+> **Never commit a populated `.env`.** It is git-ignored; `.env.example` holds placeholders only.
+
+### Running
+
+Start MongoDB, then run the API and the SPA in two terminals:
+
+```bash
+# Terminal 1 — API on http://localhost:5001
+npm run dev          # nodemon, hot reload
+# or: npm start      # plain node
+
+# Terminal 2 — SPA on http://localhost:3000
+cd frontend && npm start
+```
+
+`npm run server` boots the alternative `server.js` entry point, which mounts the full `app.js` middleware stack and starts the backup scheduler — use it when exercising scheduled jobs.
+
+Seed the policy catalogue for a usable first run:
+
+```bash
+node utils/seed_policies.js
+```
+
+Health check: <http://localhost:5001/api/health> · Performance metrics: <http://localhost:5001/api/health/perf>
+
+---
+
+## API Reference
+
+All protected routes expect `Authorization: Bearer <token>`. Base URL: `http://localhost:5001`.
+
+### Authentication — `/api/auth`
+
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `POST` | `/register` | Public | Create an account |
+| `POST` | `/login` | Public | Authenticate and receive a JWT |
+| `POST` | `/logout` | User | Blacklist the current token |
+| `GET` | `/me` | User | Current user profile |
+| `POST` | `/forgot-password` | Public | Send a reset link |
+| `POST` | `/reset-password` | Public | Redeem a reset token |
+| `GET` | `/verify-email/:token` | Public | Confirm an email address |
+
+### Profile & Admin Users — `/api/profile`
+
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `GET` | `/` | User | Fetch own profile |
+| `PUT` | `/` | User | Update own profile |
+| `POST` | `/change-password` | User | Change password |
+| `POST` | `/deactivate` | User | Deactivate own account |
+| `GET` | `/activity-log` | User | Recent account activity |
+| `GET` | `/admin/users` | Admin | List all users |
+| `GET` | `/admin/users/:userId` | Admin | User detail |
+| `PUT` | `/admin/users/:userId/role` | Admin | Change a user's role |
+| `PUT` | `/admin/users/:userId/status` | Admin | Activate/deactivate a user |
+| `GET` | `/admin/stats` | Admin | System-wide statistics |
+
+### Policies — `/api/policies`
+
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `GET` | `/search` | User | Search and filter the catalogue *(cached 60s)* |
+| `GET` | `/:id` | User | Policy detail *(cached 300s)* |
+| `POST` | `/compare` | User | Compare policies side by side |
+
+### Purchases — `/api/purchases`
+
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `POST` | `/initiate` | User | Begin a sandbox purchase |
+| `POST` | `/complete` | User | Settle payment and issue the policy |
+| `GET` | `/my` | User | Own purchases *(cached 30s)* |
+| `GET` | `/:id` | User | Purchase detail |
+| `GET` | `/:id/download` | User | Download the generated policy PDF |
+
+### Renewals — `/api/renewals`
+
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `GET` | `/eligibility/:purchaseId` | User | Check renewal eligibility |
+| `POST` | `/initiate` | User | Start a renewal transaction |
+| `GET` | `/my` | User | Own renewal history |
+| `GET` | `/:renewalId` | User | Renewal status |
+
+### Claims — `/api/claims`
+
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `POST` | `/` | User | Submit a claim with up to 5 documents |
+| `GET` | `/my` | User | Own claims *(cached 30s)* |
+| `GET` | `/:claimId` | User | Claim detail and status history |
+| `GET` | `/:claimId/documents/:filename` | User | Download a claim document |
+| `GET` | `/admin` | Admin | All claims across users |
+| `PUT` | `/:id/status` | Admin | Advance the claim status |
+
+### Administration — `/api/admin`
+
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `GET` | `/downtimes` | Admin | Outage history |
+| `GET` | `/downtimes/stats` | Admin | Uptime statistics |
+| `GET` | `/downtimes/monitor/config` | Admin | Monitor configuration |
+| `POST` | `/downtimes/test` | Admin | Trigger a synthetic downtime event |
+| `GET` | `/backups` | Admin | List available backups |
+| `POST` | `/backups/run` | Admin | Trigger a backup immediately |
+| `POST` | `/backups/restore` | Admin | Restore from a chosen backup |
+| `GET` | `/backups/download/:name` | Admin | Download a backup archive |
+
+### System
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/api/health` | Liveness probe |
+| `GET` | `/api/health/perf` | Latency percentiles, slow requests, cache hit rate |
+
+Full request and response payloads are in [API_DOCUMENTATION.md](API_DOCUMENTATION.md).
+
+---
+
+## Testing
+
+The suite spans unit tests for utilities and services, integration tests over the Express app via Supertest, and performance assertions — running against an ephemeral `mongodb-memory-server` instance, so no local database is required.
+
+```bash
+npm test                    # full backend suite
+npm run test:watch          # watch mode
+npm run coverage:backend    # coverage report in coverage/
+npm run test:renewal        # renewal module, scoped coverage
+npm run test:downtime       # downtime monitoring, scoped coverage
+
+cd frontend && npm test     # React Testing Library suite
+```
+
+**Coverage areas**
+
+| Suite | Focus |
+| --- | --- |
+| `tests/auth.test.js` | Registration, login, token issuance, reset flow |
+| `tests/rbac.test.js`, `tests/roleAuth.test.js` | Role enforcement, 401/403 boundaries, audit logging |
+| `tests/passwordHash.test.js`, `tests/jwtValidation.test.js` | Hashing correctness, token tampering |
+| `tests/renewal.test.js`, `tests/renewalNotification.test.js` | Eligibility, payment states, confirmation email |
+| `tests/claimStatus.test.js` | Claim status transitions and history |
+| `tests/perf.cache.test.js`, `tests/perf.latency.test.js` | Cache hit/miss behaviour, latency budgets |
+| `tests/backup.test.js` | Backup creation, retention, restore validation |
+| `tests/downtime.test.js` | Probe logic, alert thresholds, log persistence |
+| `tests/unit/**` | Controllers, services, ID generators, PDF generation, upload filters |
+
+Load testing:
+
+```bash
+npm run bench:search     # autocannon against /api/policies/search
+npm run bench:details    # autocannon against /api/policies/:id
+```
+
+Results land in `benchmarks/` as timestamped JSON. See [PERFORMANCE.md](PERFORMANCE.md).
+
+---
+
+## CI/CD Pipeline
+
+Every push and pull request on any branch runs [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml). The stages run in sequence — a failure anywhere stops the pipeline.
+
+```
+build ──▶ test ──▶ coverage ──▶ lint ──▶ security
+```
+
+| Stage | What it does | Gate |
+| --- | --- | --- |
+| **Build** | Installs backend and frontend dependencies on Node 20 | Clean `npm ci` |
+| **Test** | Runs backend Jest suites against a live MongoDB 6.0 service plus the frontend suite | All tests pass; JUnit XML uploaded |
+| **Coverage** | Generates backend and frontend coverage and combines them | **≥ 70%** combined, enforced by `scripts/check-coverage-threshold.mjs` |
+| **Lint** | ESLint across the backend, CRA production build for the frontend, Pylint where Python exists | 0 ESLint errors, < 10 warnings; Pylint ≥ 7.5 |
+| **Security** | `npm audit` (high+ backend, moderate+ frontend), TruffleHog secret scan, Bandit and Safety for Python | No high-severity advisories; no committed secrets |
+
+Reports for every stage are uploaded as workflow artifacts. The deployment job that packages a versioned `.zip` is present but commented out — the project is CI-gated rather than continuously deployed.
+
+Run the same gates locally before pushing:
+
+```bash
+npm run lint
+npm run security:audit
+npm run coverage:backend
+```
+
+---
+
+## Operations
+
+### Backup & Restore
+
+A `node-cron` job dumps MongoDB and the `uploads/` tree to `backups/` nightly at 00:00, keeping the last three days. Set `DISABLE_BACKUP_SCHEDULER=true` to turn it off.
+
+```bash
+npm run verify:backups     # validate the most recent archives
+```
+
+Admins can list, trigger, download, and restore backups from `/admin/backups` in the UI or the `/api/admin/backups/*` endpoints. Details in [BACKUP_RESTORE.md](BACKUP_RESTORE.md).
+
+### Downtime Monitoring
+
+A scheduled probe checks service health every `MONITOR_INTERVAL_MINUTES` (default 10). Once a service has been unreachable for longer than `DOWN_ALERT_THRESHOLD_MS` (default 5 minutes), a downtime record opens, an email — and an optional webhook — alert fires, and the event is appended to `logs/downtime.log`. Recovery closes the record and sends a follow-up.
+
+```bash
+npm run monitor:test       # run one health check immediately
+```
+
+History and uptime statistics are available at `/admin` in the UI. Details in [DOWNTIME_MONITORING.md](DOWNTIME_MONITORING.md).
+
+### Logs
+
+| File | Contents |
+| --- | --- |
+| `logs/audit.log` | Every granted and denied access attempt on protected routes |
+| `logs/claims.log` | Claim submissions and status transitions |
+| `logs/renewals.log` | Renewal confirmations |
+| `logs/downtime.log` | Outage and recovery events |
+| `logs/backup.log` | Backup and restore operations |
+| `logs/perf.log` | Request timing samples |
+
+---
+
+## Project Structure
+
+```
+.
+├── app.js                    # Express app: middleware chain, route mounting
+├── server.js                 # Entry point — app.js + schedulers
+├── start-server.js           # Development entry point (npm start / npm run dev)
+├── config/
+│   ├── logger.js             # Winston channels + auditLog helpers
+│   └── mailer.js             # Nodemailer transport
+├── controllers/              # auth · policy · purchase · renewal · claim · profile
+├── middleware/
+│   ├── auth.js               # JWT verification + blacklist check
+│   ├── roleAuth.js           # authorizeRoles / requireAdmin + audit
+│   ├── cache.middleware.js   # Per-route response caching
+│   ├── timing.middleware.js  # Latency instrumentation
+│   └── upload.js             # Multer config, type and size filters
+├── models/                   # user · policy · purchase · renewal · claim · downtime
+├── routes/                   # One router per domain, mounted under /api
+├── services/
+│   ├── cache.service.js      # Redis with LRU fallback
+│   ├── payment.service.js    # Sandbox payment gateway
+│   ├── storage.service.js    # Claim document persistence
+│   ├── health.service.js     # Probe execution
+│   ├── downtime.service.js   # Outage record lifecycle
+│   ├── alert.service.js      # Email / webhook alerting
+│   ├── backup.service.js     # Dump + retention
+│   ├── restore.service.js    # Restore + verification
+│   └── tokenBlacklist.service.js
+├── scheduler/                # downtimeMonitor · backupScheduler (node-cron)
+├── utils/                    # PDF generation, ID generators, renewal maths, seeds
+├── scripts/                  # CI gates, Jest setup, env check, mail helpers
+├── tools/                    # autocannon load tests, ZAP scan, backup verification
+├── tests/                    # Integration suites + tests/unit/**
+├── frontend/
+│   └── src/
+│       ├── pages/            # 20 screens — auth, policies, purchase, claims, admin
+│       ├── components/       # ProtectedRoute
+│       ├── contexts/         # Auth context
+│       └── services/         # Axios API layer
+└── .github/workflows/        # ci-cd.yml
+```
+
+---
+
+## Documentation
+
+| Document | Contents |
+| --- | --- |
+| [API_DOCUMENTATION.md](API_DOCUMENTATION.md) | Full endpoint reference with payloads |
+| [ADMIN_GUIDE.md](ADMIN_GUIDE.md) | Administrator workflows |
+| [FRONTEND_INTEGRATION.md](FRONTEND_INTEGRATION.md) | Wiring the SPA to the API |
+| [PERFORMANCE.md](PERFORMANCE.md) · [PERFORMANCE_QUICKREF.md](PERFORMANCE_QUICKREF.md) | Caching design, benchmarks, tuning |
+| [SECURITY_CHECKLIST.md](SECURITY_CHECKLIST.md) | Hardening measures and verification steps |
+| [BACKUP_RESTORE.md](BACKUP_RESTORE.md) | Backup schedule, retention, restore runbook |
+| [DOWNTIME_MONITORING.md](DOWNTIME_MONITORING.md) | Probe configuration and alerting |
+| [POLICY_RENEWAL_GUIDE.md](POLICY_RENEWAL_GUIDE.md) · [HOW_TO_TEST_RENEWAL.md](HOW_TO_TEST_RENEWAL.md) | Renewal flow and manual test plan |
+| [BRANCH_WORKFLOW.md](BRANCH_WORKFLOW.md) | Branching and review conventions |
+
+---
+
+## Development Workflow
+
+The project follows an Agile process across four epics, with one branch per user story.
+
+**Branches**
+
+| Branch | Role |
+| --- | --- |
+| `main` | Production-ready, release-tagged code |
+| `develop` | Integration branch — all stories merge here first |
+| `feature/*` | One branch per user story |
+| `bugfixes-*` | Fixes against an integrated story |
+
+**Commit convention** — `feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `test:`, `ci:`, `chore:`, with the Jira story ID where applicable (e.g. `IN35: Performance Improvements & Caching`).
+
+**Review process** — branch from `develop`, open a PR using the [template](.github/pull_request_template.md), pass all five CI stages, obtain a review from a [CODEOWNER](.github/CODEOWNERS), then squash into `develop`. `develop` is promoted to `main` at the end of each release.
+
+---
+
+## Team
+
+**InsureMithra** — PES University, RR Campus · CSE Section D · Project P04
+
+| Member | Role |
+| --- | --- |
+| [@suman184](https://github.com/suman184) | Scrum Master |
+| [@dishan-d](https://github.com/dishan-d) | Developer |
+| [@DhruvJ12421](https://github.com/DhruvJ12421) | Developer |
+| [@HarshaaVardhanaKV](https://github.com/HarshaaVardhanaKV) | Developer |
+
+**Faculty Supervisor** — [@sapnavm](https://github.com/sapnavm)
+
+**Teaching Assistants** — [@Crashbadger24](https://github.com/Crashbadger24) · [@Srujkul](https://github.com/Srujkul) · [@srishmath](https://github.com/srishmath)
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE). Developed for educational purposes as part of the UE23CS341A curriculum at PES University.
