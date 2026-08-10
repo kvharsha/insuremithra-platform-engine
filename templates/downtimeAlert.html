@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Downtime Alert</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="padding: 20px 0; text-align: center;">
+        <!-- Email Container -->
+        <table role="presentation" style="width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #f44336; color: #ffffff; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
+              <h1 style="margin: 0; font-size: 28px; font-weight: bold;">🚨 Service Downtime Alert</h1>
+              <p style="margin: 10px 0 0 0; font-size: 16px;">Critical Service Failure Detected</p>
+            </td>
+          </tr>
+          
+          <!-- Alert Banner -->
+          <tr>
+            <td style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 20px;">
+              <p style="margin: 0; color: #856404; font-size: 14px; font-weight: bold;">
+                ⚠️ IMMEDIATE ACTION REQUIRED
+              </p>
+            </td>
+          </tr>
+          
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 30px;">
+              <h2 style="color: #333333; margin: 0 0 20px 0; font-size: 22px;">Service Status: DOWN</h2>
+              
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                    <strong style="color: #666666; font-size: 14px;">Service Name:</strong>
+                  </td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; text-align: right;">
+                    <span style="color: #333333; font-size: 14px; font-weight: bold;">{{serviceName}}</span>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                    <strong style="color: #666666; font-size: 14px;">Downtime Started:</strong>
+                  </td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; text-align: right;">
+                    <span style="color: #333333; font-size: 14px;">{{startTime}}</span>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                    <strong style="color: #666666; font-size: 14px;">Duration:</strong>
+                  </td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; text-align: right;">
+                    <span style="color: #f44336; font-size: 14px; font-weight: bold;">{{duration}}</span>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                    <strong style="color: #666666; font-size: 14px;">Error Details:</strong>
+                  </td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; text-align: right;">
+                    <span style="color: #333333; font-size: 14px;">{{details}}</span>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td style="padding: 12px 0;">
+                    <strong style="color: #666666; font-size: 14px;">Incident ID:</strong>
+                  </td>
+                  <td style="padding: 12px 0; text-align: right;">
+                    <span style="color: #999999; font-size: 12px; font-family: monospace;">{{incidentId}}</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          
+          <!-- Action Items -->
+          <tr>
+            <td style="padding: 0 30px 30px 30px;">
+              <div style="background-color: #f9f9f9; padding: 20px; border-radius: 6px; border-left: 4px solid #f44336;">
+                <h3 style="margin: 0 0 15px 0; color: #333333; font-size: 16px;">Recommended Actions:</h3>
+                <ul style="margin: 0; padding-left: 20px; color: #666666; font-size: 14px; line-height: 1.6;">
+                  <li>Check server logs for error messages</li>
+                  <li>Verify database connectivity and status</li>
+                  <li>Review recent deployments or configuration changes</li>
+                  <li>Check system resources (CPU, memory, disk space)</li>
+                  <li>Verify network connectivity and firewall rules</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Call to Action Button -->
+          <tr>
+            <td style="padding: 0 30px 30px 30px; text-align: center;">
+              <a href="{{logsUrl}}" 
+                 style="display: inline-block; padding: 14px 32px; background-color: #f44336; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold; margin-top: 10px;">
+                View Downtime Logs →
+              </a>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 20px; text-align: center; background-color: #f9f9f9; border-radius: 0 0 8px 8px; border-top: 1px solid #eeeeee;">
+              <p style="margin: 0; color: #999999; font-size: 12px;">
+                This is an automated alert from <strong>InsureMithra Monitoring System</strong>
+              </p>
+              <p style="margin: 10px 0 0 0; color: #999999; font-size: 12px;">
+                You're receiving this because you're listed as an admin contact for downtime alerts.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

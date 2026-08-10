@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Renewal Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .detail-box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: bold;
+            color: #666;
+        }
+        .value {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="success-icon">✓</div>
+        <h1>Renewal Successful!</h1>
+        <p>Your policy has been renewed</p>
+    </div>
+    
+    <div class="content">
+        <p>Dear {{userName}},</p>
+        
+        <p>Great news! Your insurance policy has been successfully renewed.</p>
+        
+        <div class="detail-box">
+            <h3>Renewal Details</h3>
+            <div class="detail-row">
+                <span class="label">Policy Name:</span>
+                <span class="value">{{policyName}}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Transaction ID:</span>
+                <span class="value">{{transactionId}}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Amount Paid:</span>
+                <span class="value">{{amount}}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">New Expiry Date:</span>
+                <span class="value">{{newExpiryDate}}</span>
+            </div>
+        </div>
+        
+        <p>Your coverage continues without interruption. You can view your renewed policy details in your dashboard.</p>
+        
+        <center>
+            <a href="http://localhost:3000/dashboard" class="button">View Dashboard</a>
+        </center>
+        
+        <p style="margin-top: 30px;">If you have any questions, please don't hesitate to contact our support team.</p>
+        
+        <p>Thank you for choosing InsureMithra!</p>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 InsureMithra. All rights reserved.</p>
+        <p>This is an automated email. Please do not reply.</p>
+    </div>
+</body>
+</html>

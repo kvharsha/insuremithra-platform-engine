@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Renewal Failed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #f44336, #e91e63);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        .error-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .detail-box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: bold;
+            color: #666;
+        }
+        .value {
+            color: #333;
+        }
+        .error-message {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="error-icon">✗</div>
+        <h1>Renewal Failed</h1>
+        <p>We couldn't process your renewal</p>
+    </div>
+    
+    <div class="content">
+        <p>Dear {{userName}},</p>
+        
+        <p>We're sorry, but we were unable to process the renewal for your insurance policy.</p>
+        
+        <div class="detail-box">
+            <h3>Transaction Details</h3>
+            <div class="detail-row">
+                <span class="label">Policy Name:</span>
+                <span class="value">{{policyName}}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Transaction ID:</span>
+                <span class="value">{{transactionId}}</span>
+            </div>
+        </div>
+        
+        <div class="error-message">
+            <strong>Reason:</strong> {{errorMessage}}
+        </div>
+        
+        <p><strong>What to do next:</strong></p>
+        <ul>
+            <li>Check your payment method details</li>
+            <li>Ensure you have sufficient funds</li>
+            <li>Try using a different payment method</li>
+            <li>Contact your bank if the issue persists</li>
+        </ul>
+        
+        <p>You can try renewing again from your dashboard. If you continue to experience issues, please contact our support team.</p>
+        
+        <center>
+            <a href="http://localhost:3000/dashboard" class="button">Try Again</a>
+        </center>
+        
+        <p style="margin-top: 30px; color: #f44336;">
+            <strong>Important:</strong> Your policy will expire on its original expiry date. Please complete the renewal before expiry to avoid any lapse in coverage.
+        </p>
+        
+        <p>Thank you for choosing InsureMithra!</p>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 InsureMithra. All rights reserved.</p>
+        <p>Need help? Contact us at support@insuremithra.com</p>
+    </div>
+</body>
+</html>

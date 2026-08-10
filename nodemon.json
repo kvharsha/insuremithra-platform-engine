@@ -1,0 +1,30 @@
+{
+  "ignore": [
+    "backups/**",
+    "logs/**",
+    "uploads/**",
+    "receipts/**",
+    "node_modules/**",
+    "frontend/**",
+    "artifacts/**",
+    "reports/**",
+    "benchmarks/**",
+    "*.log",
+    "*.gz",
+    "*.tar"
+  ],
+  "watch": [
+    "*.js",
+    "config/**",
+    "controllers/**",
+    "middleware/**",
+    "models/**",
+    "routes/**",
+    "scheduler/**",
+    "scripts/**",
+    "services/**",
+    "utils/**"
+  ],
+  "ext": "js,json",
+  "delay": 1000
+}

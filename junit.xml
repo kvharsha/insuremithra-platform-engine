@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="109" failures="0" errors="0" time="135.579">
+  <testsuite name="Role-Based Access Control" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:15:25" time="41.011" tests="16">
+    <testcase classname="Role-Based Access Control GET /api/profile/admin/users should allow admin to view all users" name="Role-Based Access Control GET /api/profile/admin/users should allow admin to view all users" time="3.391">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/admin/users should deny regular user access to view all users" name="Role-Based Access Control GET /api/profile/admin/users should deny regular user access to view all users" time="2.837">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/admin/users should deny unauthenticated access" name="Role-Based Access Control GET /api/profile/admin/users should deny unauthenticated access" time="2.187">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/admin/users/:userId should allow admin to view specific user" name="Role-Based Access Control GET /api/profile/admin/users/:userId should allow admin to view specific user" time="2.13">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/admin/users/:userId should deny regular user access to view other users" name="Role-Based Access Control GET /api/profile/admin/users/:userId should deny regular user access to view other users" time="1.709">
+    </testcase>
+    <testcase classname="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should allow admin to change user role" name="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should allow admin to change user role" time="1.762">
+    </testcase>
+    <testcase classname="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should prevent admin from changing their own role" name="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should prevent admin from changing their own role" time="2.194">
+    </testcase>
+    <testcase classname="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should reject invalid roles" name="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should reject invalid roles" time="2.14">
+    </testcase>
+    <testcase classname="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should deny regular user from changing roles" name="Role-Based Access Control PUT /api/profile/admin/users/:userId/role should deny regular user from changing roles" time="1.931">
+    </testcase>
+    <testcase classname="Role-Based Access Control PUT /api/profile/admin/users/:userId/status should allow admin to deactivate user" name="Role-Based Access Control PUT /api/profile/admin/users/:userId/status should allow admin to deactivate user" time="2.155">
+    </testcase>
+    <testcase classname="Role-Based Access Control PUT /api/profile/admin/users/:userId/status should allow admin to activate user" name="Role-Based Access Control PUT /api/profile/admin/users/:userId/status should allow admin to activate user" time="2.303">
+    </testcase>
+    <testcase classname="Role-Based Access Control PUT /api/profile/admin/users/:userId/status should prevent admin from changing their own status" name="Role-Based Access Control PUT /api/profile/admin/users/:userId/status should prevent admin from changing their own status" time="2.358">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/admin/stats should return system statistics for admin" name="Role-Based Access Control GET /api/profile/admin/stats should return system statistics for admin" time="1.97">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/admin/stats should deny regular user access to stats" name="Role-Based Access Control GET /api/profile/admin/stats should deny regular user access to stats" time="2.162">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/activity-log should allow admin to view any user activity log" name="Role-Based Access Control GET /api/profile/activity-log should allow admin to view any user activity log" time="1.821">
+    </testcase>
+    <testcase classname="Role-Based Access Control GET /api/profile/activity-log should allow regular user to view only their own activity log" name="Role-Based Access Control GET /api/profile/activity-log should allow regular user to view only their own activity log" time="2.577">
+    </testcase>
+  </testsuite>
+  <testsuite name="Authentication API" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:16:06" time="31.573" tests="19">
+    <testcase classname="Authentication API POST /api/auth/register should register a new user successfully" name="Authentication API POST /api/auth/register should register a new user successfully" time="1.413">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/register should fail to register with duplicate email" name="Authentication API POST /api/auth/register should fail to register with duplicate email" time="0.656">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/register should fail to register with invalid email" name="Authentication API POST /api/auth/register should fail to register with invalid email" time="0.875">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/register should fail to register with weak password" name="Authentication API POST /api/auth/register should fail to register with weak password" time="0.639">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/login should login with valid credentials" name="Authentication API POST /api/auth/login should login with valid credentials" time="1.251">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/login should fail to login with invalid email" name="Authentication API POST /api/auth/login should fail to login with invalid email" time="0.605">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/login should fail to login with invalid password" name="Authentication API POST /api/auth/login should fail to login with invalid password" time="1.219">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/login should lock account after multiple failed attempts" name="Authentication API POST /api/auth/login should lock account after multiple failed attempts" time="3.873">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/forgot-password should send password reset email for valid user" name="Authentication API POST /api/auth/forgot-password should send password reset email for valid user" time="0.694">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/forgot-password should return same message for non-existent user" name="Authentication API POST /api/auth/forgot-password should return same message for non-existent user" time="0.783">
+    </testcase>
+    <testcase classname="Authentication API GET /api/auth/me should get current user profile with valid token" name="Authentication API GET /api/auth/me should get current user profile with valid token" time="1.772">
+    </testcase>
+    <testcase classname="Authentication API GET /api/auth/me should fail to get profile without token" name="Authentication API GET /api/auth/me should fail to get profile without token" time="2.111">
+    </testcase>
+    <testcase classname="Authentication API GET /api/auth/me should fail to get profile with invalid token" name="Authentication API GET /api/auth/me should fail to get profile with invalid token" time="1.744">
+    </testcase>
+    <testcase classname="Authentication API POST /api/auth/logout should logout successfully with valid token" name="Authentication API POST /api/auth/logout should logout successfully with valid token" time="1.78">
+    </testcase>
+    <testcase classname="Profile API GET /api/profile should get user profile with valid token" name="Profile API GET /api/profile should get user profile with valid token" time="1.963">
+    </testcase>
+    <testcase classname="Profile API PUT /api/profile should update user profile successfully" name="Profile API PUT /api/profile should update user profile successfully" time="1.859">
+    </testcase>
+    <testcase classname="Profile API PUT /api/profile should fail to update with invalid data" name="Profile API PUT /api/profile should fail to update with invalid data" time="1.675">
+    </testcase>
+    <testcase classname="Profile API POST /api/profile/change-password should change password successfully" name="Profile API POST /api/profile/change-password should change password successfully" time="2.887">
+    </testcase>
+    <testcase classname="Profile API POST /api/profile/change-password should fail to change password with wrong current password" name="Profile API POST /api/profile/change-password should fail to change password with wrong current password" time="2.326">
+    </testcase>
+  </testsuite>
+  <testsuite name="Policy Renewal API" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:16:38" time="34.618" tests="14">
+    <testcase classname="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return eligible for purchase expiring in 5 days" name="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return eligible for purchase expiring in 5 days" time="2.724">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return not eligible for purchase expiring in 10 days" name="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return not eligible for purchase expiring in 10 days" time="1.825">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return 404 for non-existent purchase" name="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return 404 for non-existent purchase" time="2.523">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return 403 when user tries to check eligibility for another user&apos;s purchase" name="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return 403 when user tries to check eligibility for another user&apos;s purchase" time="4.867">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return 401 without auth token" name="Policy Renewal API GET /api/renewals/eligibility/:purchaseId should return 401 without auth token" time="1.537">
+    </testcase>
+    <testcase classname="Policy Renewal API POST /api/renewals/initiate should successfully initiate renewal for eligible purchase" name="Policy Renewal API POST /api/renewals/initiate should successfully initiate renewal for eligible purchase" time="1.971">
+    </testcase>
+    <testcase classname="Policy Renewal API POST /api/renewals/initiate should reject renewal for purchase not in renewal window" name="Policy Renewal API POST /api/renewals/initiate should reject renewal for purchase not in renewal window" time="1.982">
+    </testcase>
+    <testcase classname="Policy Renewal API POST /api/renewals/initiate should reject renewal if one is already in progress" name="Policy Renewal API POST /api/renewals/initiate should reject renewal if one is already in progress" time="1.981">
+    </testcase>
+    <testcase classname="Policy Renewal API POST /api/renewals/initiate should return 400 if required fields are missing" name="Policy Renewal API POST /api/renewals/initiate should return 400 if required fields are missing" time="2.124">
+    </testcase>
+    <testcase classname="Policy Renewal API Renewal Payment Flow should update expiry date on successful payment" name="Policy Renewal API Renewal Payment Flow should update expiry date on successful payment" time="5.603">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/:renewalId should get renewal status for user&apos;s renewal" name="Policy Renewal API GET /api/renewals/:renewalId should get renewal status for user&apos;s renewal" time="0.943">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/:renewalId should return 403 for another user&apos;s renewal" name="Policy Renewal API GET /api/renewals/:renewalId should return 403 for another user&apos;s renewal" time="1.776">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/my should get user&apos;s renewal history" name="Policy Renewal API GET /api/renewals/my should get user&apos;s renewal history" time="1.158">
+    </testcase>
+    <testcase classname="Policy Renewal API GET /api/renewals/my should support pagination" name="Policy Renewal API GET /api/renewals/my should support pagination" time="1.136">
+    </testcase>
+  </testsuite>
+  <testsuite name="middleware/roleAuth" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:13" time="10.01" tests="3">
+    <testcase classname="middleware/roleAuth allows admin to access admin-only route" name="middleware/roleAuth allows admin to access admin-only route" time="3.297">
+    </testcase>
+    <testcase classname="middleware/roleAuth blocks regular user with 403" name="middleware/roleAuth blocks regular user with 403" time="3.029">
+    </testcase>
+    <testcase classname="middleware/roleAuth blocks unauthenticated request with 401" name="middleware/roleAuth blocks unauthenticated request with 401" time="2.366">
+    </testcase>
+  </testsuite>
+  <testsuite name="Renewal Notification" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:23" time="5.75" tests="1">
+    <testcase classname="Renewal Notification sends renewal email and logs event" name="Renewal Notification sends renewal email and logs event" time="2.375">
+    </testcase>
+  </testsuite>
+  <testsuite name="Claim Status APIs (basic)" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:29" time="3.354" tests="1">
+    <testcase classname="Claim Status APIs (basic) GET /api/claims/my should return empty list for new user" name="Claim Status APIs (basic) GET /api/claims/my should return empty list for new user" time="1.769">
+    </testcase>
+  </testsuite>
+  <testsuite name="policy.controller" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:32" time="0.484" tests="7">
+    <testcase classname="policy.controller searchPolicies returns list based on filters" name="policy.controller searchPolicies returns list based on filters" time="0.004">
+    </testcase>
+    <testcase classname="policy.controller comparePolicies rejects non-array body" name="policy.controller comparePolicies rejects non-array body" time="0.002">
+    </testcase>
+    <testcase classname="policy.controller comparePolicies rejects wrong length" name="policy.controller comparePolicies rejects wrong length" time="0">
+    </testcase>
+    <testcase classname="policy.controller comparePolicies rejects duplicate ids" name="policy.controller comparePolicies rejects duplicate ids" time="0.001">
+    </testcase>
+    <testcase classname="policy.controller comparePolicies rejects invalid ObjectId" name="policy.controller comparePolicies rejects invalid ObjectId" time="0.002">
+    </testcase>
+    <testcase classname="policy.controller getPolicyById invalid format 400" name="policy.controller getPolicyById invalid format 400" time="0.001">
+    </testcase>
+    <testcase classname="policy.controller getPolicyById not found 404" name="policy.controller getPolicyById not found 404" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="claim.controller extra paths" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:33" time="0.496" tests="3">
+    <testcase classname="claim.controller extra paths updateClaimStatus as admin - success path" name="claim.controller extra paths updateClaimStatus as admin - success path" time="0.004">
+    </testcase>
+    <testcase classname="claim.controller extra paths updateClaimStatus when db throws returns 500" name="claim.controller extra paths updateClaimStatus when db throws returns 500" time="0.044">
+    </testcase>
+    <testcase classname="claim.controller extra paths getClaimById returns populated claim for owner" name="claim.controller extra paths getClaimById returns populated claim for owner" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="upload middleware basic checks" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:33" time="0.657" tests="2">
+    <testcase classname="upload middleware basic checks creates temp uploads directory when missing" name="upload middleware basic checks creates temp uploads directory when missing" time="0.051">
+    </testcase>
+    <testcase classname="upload middleware basic checks allowed mimetypes include pdf and images" name="upload middleware basic checks allowed mimetypes include pdf and images" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="claimStatusNotifier" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:34" time="0.549" tests="2">
+    <testcase classname="claimStatusNotifier succeeds when template missing but sendEmail resolves" name="claimStatusNotifier succeeds when template missing but sendEmail resolves" time="0.036">
+    </testcase>
+    <testcase classname="claimStatusNotifier returns false when sendEmail rejects" name="claimStatusNotifier returns false when sendEmail rejects" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="purchase.controller error and pdf paths" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:35" time="0.707" tests="2">
+    <testcase classname="purchase.controller error and pdf paths initiatePurchase handles save() throwing and returns 500" name="purchase.controller error and pdf paths initiatePurchase handles save() throwing and returns 500" time="0.026">
+    </testcase>
+    <testcase classname="purchase.controller error and pdf paths completePurchase tolerates pdf generation failure and still returns 200" name="purchase.controller error and pdf paths completePurchase tolerates pdf generation failure and still returns 200" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="central mailer" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:35" time="0.49" tests="1">
+    <testcase classname="central mailer uses transporter.sendMail when configured" name="central mailer uses transporter.sendMail when configured" time="0.042">
+    </testcase>
+  </testsuite>
+  <testsuite name="generateTransactionId" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:36" time="0.417" tests="1">
+    <testcase classname="generateTransactionId includes prefix and hex string" name="generateTransactionId includes prefix and hex string" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="claim.controller" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:36" time="0.593" tests="11">
+    <testcase classname="claim.controller submitClaim returns 401 when unauthenticated" name="claim.controller submitClaim returns 401 when unauthenticated" time="0.002">
+    </testcase>
+    <testcase classname="claim.controller submitClaim validates inputs and returns 400 for missing policyId" name="claim.controller submitClaim validates inputs and returns 400 for missing policyId" time="0.002">
+    </testcase>
+    <testcase classname="claim.controller submitClaim returns 403 if purchase not found" name="claim.controller submitClaim returns 403 if purchase not found" time="0.002">
+    </testcase>
+    <testcase classname="claim.controller submitClaim success path stores files and returns 200" name="claim.controller submitClaim success path stores files and returns 200" time="0.013">
+    </testcase>
+    <testcase classname="claim.controller getClaimById returns 401 if unauthenticated" name="claim.controller getClaimById returns 401 if unauthenticated" time="0.001">
+    </testcase>
+    <testcase classname="claim.controller getClaimById returns 404 if not found" name="claim.controller getClaimById returns 404 if not found" time="0.001">
+    </testcase>
+    <testcase classname="claim.controller updateClaimStatus denies non-admin" name="claim.controller updateClaimStatus denies non-admin" time="0.001">
+    </testcase>
+    <testcase classname="claim.controller updateClaimStatus invalid status returns 400 for admin" name="claim.controller updateClaimStatus invalid status returns 400 for admin" time="0.001">
+    </testcase>
+    <testcase classname="claim.controller getUserClaims returns mapped list for authenticated user" name="claim.controller getUserClaims returns mapped list for authenticated user" time="0.002">
+    </testcase>
+    <testcase classname="claim.controller getClaimByIdDocument returns file when exists and 404 when missing" name="claim.controller getClaimByIdDocument returns file when exists and 404 when missing" time="0.003">
+    </testcase>
+    <testcase classname="claim.controller getAllClaimsAdmin returns 403 for non-admin and lists claims for admin" name="claim.controller getAllClaimsAdmin returns 403 for non-admin and lists claims for admin" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="purchase.controller" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:37" time="0.544" tests="14">
+    <testcase classname="purchase.controller initiatePurchase 401 if unauthenticated" name="purchase.controller initiatePurchase 401 if unauthenticated" time="0.003">
+    </testcase>
+    <testcase classname="purchase.controller initiatePurchase 400 if no policyId" name="purchase.controller initiatePurchase 400 if no policyId" time="0.001">
+    </testcase>
+    <testcase classname="purchase.controller initiatePurchase 404 if policy not found" name="purchase.controller initiatePurchase 404 if policy not found" time="0.002">
+    </testcase>
+    <testcase classname="purchase.controller initiatePurchase success returns 201" name="purchase.controller initiatePurchase success returns 201" time="0.001">
+    </testcase>
+    <testcase classname="purchase.controller completePurchase 401 if unauthenticated" name="purchase.controller completePurchase 401 if unauthenticated" time="0">
+    </testcase>
+    <testcase classname="purchase.controller completePurchase 400 if missing purchaseId" name="purchase.controller completePurchase 400 if missing purchaseId" time="0.001">
+    </testcase>
+    <testcase classname="purchase.controller completePurchase 404 if purchase not found" name="purchase.controller completePurchase 404 if purchase not found" time="0">
+    </testcase>
+    <testcase classname="purchase.controller completePurchase forbidden if different user" name="purchase.controller completePurchase forbidden if different user" time="0">
+    </testcase>
+    <testcase classname="purchase.controller completePurchase success path sets pdfPath when generatePolicyPDF resolves" name="purchase.controller completePurchase success path sets pdfPath when generatePolicyPDF resolves" time="0.001">
+    </testcase>
+    <testcase classname="purchase.controller completePurchase returns Already completed when status is success" name="purchase.controller completePurchase returns Already completed when status is success" time="0.001">
+    </testcase>
+    <testcase classname="purchase.controller completePurchase returns 400 when status is failed" name="purchase.controller completePurchase returns 400 when status is failed" time="0">
+    </testcase>
+    <testcase classname="purchase.controller getPurchase forbidden when user mismatch and 404 when not found" name="purchase.controller getPurchase forbidden when user mismatch and 404 when not found" time="0.001">
+    </testcase>
+    <testcase classname="purchase.controller downloadPDF sends file when available and PDF 404 when missing" name="purchase.controller downloadPDF sends file when available and PDF 404 when missing" time="0.003">
+    </testcase>
+    <testcase classname="purchase.controller getUserPurchases unauthorized and success" name="purchase.controller getUserPurchases unauthorized and success" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="renewalSuccessMailer utility" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:37" time="0.419" tests="1">
+    <testcase classname="renewalSuccessMailer utility loads template and calls transporter.sendMail" name="renewalSuccessMailer utility loads template and calls transporter.sendMail" time="0.044">
+    </testcase>
+  </testsuite>
+  <testsuite name="generatePolicyPDF" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:38" time="0.487" tests="1">
+    <testcase classname="generatePolicyPDF resolves with a file path when PDF generation finishes" name="generatePolicyPDF resolves with a file path when PDF generation finishes" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="authorizeRoles middleware" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:38" time="0.475" tests="2">
+    <testcase classname="authorizeRoles middleware allows when req.user has allowed role" name="authorizeRoles middleware allows when req.user has allowed role" time="0.002">
+    </testcase>
+    <testcase classname="authorizeRoles middleware denies when user missing or not allowed" name="authorizeRoles middleware denies when user missing or not allowed" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="StorageService" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:39" time="0.482" tests="5">
+    <testcase classname="StorageService sanitizeFilename removes special chars and limits length" name="StorageService sanitizeFilename removes special chars and limits length" time="0.004">
+    </testcase>
+    <testcase classname="StorageService ensureDirectoryExists creates dir when missing" name="StorageService ensureDirectoryExists creates dir when missing" time="0.001">
+    </testcase>
+    <testcase classname="StorageService storeClaimDocuments moves files and returns metadata" name="StorageService storeClaimDocuments moves files and returns metadata" time="0.002">
+    </testcase>
+    <testcase classname="StorageService deleteClaimDocuments removes directory when exists" name="StorageService deleteClaimDocuments removes directory when exists" time="0.001">
+    </testcase>
+    <testcase classname="StorageService getDocumentUrl converts base path to /uploads" name="StorageService getDocumentUrl converts base path to /uploads" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="upload fileFilter via multer options capture" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:39" time="0.374" tests="1">
+    <testcase classname="upload fileFilter via multer options capture fileFilter rejects invalid mimetype and accepts valid" name="upload fileFilter via multer options capture fileFilter rejects invalid mimetype and accepts valid" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="claimStatusNotifier template rendering" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:40" time="0.345" tests="1">
+    <testcase classname="claimStatusNotifier template rendering uses template file when present and sends email" name="claimStatusNotifier template rendering uses template file when present and sends email" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="generateClaimId" errors="0" failures="0" skipped="0" timestamp="2025-11-16T16:17:40" time="0.35" tests="1">
+    <testcase classname="generateClaimId returns expected format CLM-YYYYMMDD-XXXX" name="generateClaimId returns expected format CLM-YYYYMMDD-XXXX" time="0.003">
+    </testcase>
+  </testsuite>
+</testsuites>
